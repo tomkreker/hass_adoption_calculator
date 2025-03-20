@@ -1,0 +1,135 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+@import url(https://fonts.googleapis.com/css?family=Lato);
+$red: #e74c3c;
+
+*, 
+*:before, 
+*:after {
+   @include box-sizing(border-box); 
+}
+
+html, body {
+  background: #f1f1f1;
+  font-family: 'arial', sans-serif;
+  padding: 1em;
+}
+
+.container-bg {
+  background: #f1f1f1;
+}
+
+.free-text{
+   text-align: left;
+}
+
+summary{
+   font-weight: bold;
+}
+
+h1 {
+   text-align: center;
+   color: #003a5d; 
+   font-family: 'Lato', sans-serif;
+   font-weight: bold;
+   @include text-shadow(1px 1px 0 rgba(white, 1));
+}
+
+h3 {
+   text-align: center;
+   font-weight: bold;
+   font-family: 'Lato', sans-serif;
+   color: #003a5d;
+   @include text-shadow(1px 1px 0 rgba(white, 1));
+}
+
+h6 {
+   text-align: left;
+   margin: 0;
+   padding: 0;
+   color: #4072a5;
+   @include text-shadow(1px 1px 0 rgba(white, 1));
+}
+
+a {
+   font-family: 'Lato', sans-serif;
+   font-weight: lighter;
+}
+
+form {
+   max-width: 66%;
+   text-align: center;
+   margin-top: 20px;
+   margin-bottom: auto;
+   margin-right: auto;
+   margin-left: auto;
+
+   select {
+      margin-bottom: 0.3em;
+   }
+  
+  input, textarea {
+     border:0; outline:0;
+     padding: 1em;
+     @include border-radius(8px);
+     display: block;
+     width: 100%;
+     /*margin-top: 1em;*/
+     margin-bottom: 0.3em;
+     @include box-shadow(0 1px 1px rgba(black, 0.1));
+     resize: none;
+    
+    &:focus {
+       @include box-shadow(0 0px 2px rgba($red, 1)!important);
+    }
+  }
+  
+  #input-submit {
+     color: white; 
+     background: $red;
+     cursor: pointer;
+    
+    &:hover {
+       @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6)); 
+    }
+  }
+  
+  textarea {
+      height: 126px;
+  }
+}
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-right: 2%; 
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

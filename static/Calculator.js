@@ -64,6 +64,7 @@ function adoptCalc() {
   // master function used to perform the calculation 
   // get selected values based on user input
   var region = document.getElementById('input-Region').value;
+  var intakes = parseFloat(document.getElementById('input-Intakes').value);
   var newintakes = parseFloat(document.getElementById('input-Newintakes').value);
   var outcomes = parseFloat(document.getElementById('input-Outcomes').value);
   var pop = parseFloat(document.getElementById('output-Pop').value);
@@ -72,8 +73,8 @@ function adoptCalc() {
 
   // value to hit 100% balance with new intake, assuming same % of other live and non-live outcomes
   var calculatedValue100 = newintakes - Math.round(newintakes * otherlive/outcomes) - Math.round(newintakes * nonlive/outcomes);
-  // value to hit 100% balance with new intake, assuming same % of other live and non-live outcomes
-  var calculatedValuePop =  calculatedValue100 + Math.round((100-pop)/100*newintakes);
+  // value to make up for previous imbalance - adding the previous non-outcomes
+  var calculatedValuePop =  calculatedValue100 + Math.round((100-pop)/100*intakes);
   if (pop >= 100){
     calculatedValuePop = calculatedValue100;
   }
@@ -89,6 +90,68 @@ function adoptCalc() {
 
 }
 
+
+function staffHours() {
+  // dynamically displays the staff hours estimated
+  var visitors = parseFloat(document.getElementById('input-Visitors').value);
+  var visitorsTotal = parseFloat(document.getElementById('input-VisitorsTotal').value);
+  var duration = document.getElementById('output-Duration').value;
+  var percStaff = document.getElementById('output-PercStaff').value;
+  var outputHours = document.getElementById('output-Hours');
+
+  // if visitors is left empty, use 33% of total visitors
+  if ((visitors == "" || isNaN(visitors)) & (visitorsTotal != "" & !isNaN(visitorsTotal))){
+    visitors = Math.round(visitorsTotal*0.33);
+  }
+  // default values for duration and percent of staff time
+  if (duration=="" || isNaN(duration)){
+    duration = 60;
+  } 
+  else {
+    duration = parseFloat(duration);
+  }  
+  if (percStaff == ""){
+    percStaff = "30%";
+  }
+  // add % if input is just a number
+  if (percStaff != "" & percStaff.charAt(percStaff.length-1) != "%"){
+    percStaff = percStaff + '%'
+  }
+  
+  // console.log("visitors: ",visitors, "visitorsTotal: ", visitorsTotal, "duration: ", duration, "percStaff: ", percStaff);
+
+  // if either of the values is missing, no value. Otherwise, present pop balance as %
+  if (isNaN(visitors) & isNaN(visitorsTotal)) {
+    outputHours.value = null;
+  }
+  else if (visitors==0) {
+    outputHours.value = 'Visitors must not be zero.';
+  } 
+  else {
+    outputHours.value = visitors * Math.round(duration/60) * (parseFloat(percStaff.slice(0,-1))/100);
+  }
+}
+
+function hoursCalc() {
+  // master function used to perform the calculation 
+  // get selected values based on user input
+  var hours = parseFloat(document.getElementById('output-Hours').value);
+
+  // value to hit 100% balance with new intake, assuming same % of other live and non-live outcomes
+  var calculatedValue = Math.round(hours/6.5);
+  // value to make up for previous imbalance - adding the previous non-outcomes
+
+  //console.log('svi, region, orgtype, perc_stray, intake_size', '\nvalues: ',svi, region, orgtype, perc_stray, intake_size, '\ncoefs: ', sviCoef, regionCoef, orgCoef, percstrayCoef, intakeCoef);
+  //console.log('calc value', calculatedValue)
+
+  // update output with the rate
+  document.getElementById('output-FTEs').value = calculatedValue + ' staff members';	
+  
+  // show result text
+  document.getElementById('output-Text2').style.display = "block"; 
+
+}
+
 // define listening events to dynamically display dervied values
 document.addEventListener('DOMContentLoaded', () => {
   const intakeInput = document.getElementById('input-Intakes'); 
@@ -96,6 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const adoptionsInput = document.getElementById('input-Adoptions');
   const nonliveInput = document.getElementById('input-Nonlive');
   const outputText = document.getElementById('output-Text'); 
+  // part 2
+  const visitorsInput = document.getElementById('input-Visitors'); 
+  const visitorsTotalInput = document.getElementById('input-VisitorsTotal'); 
+  const durationInput = document.getElementById('output-Duration'); 
+  const percstaffInput = document.getElementById('output-PercStaff'); 
+  const outputText2 = document.getElementById('output-Text2'); 
+
  
   // event listeners for change in total or stray pets to change their values
   intakeInput.addEventListener('change', () => {
@@ -113,8 +183,22 @@ document.addEventListener('DOMContentLoaded', () => {
     otherLive();
     adoptionRate();
   });
+  // part 2
+  visitorsInput.addEventListener('change', () => {
+    staffHours();
+  });
+  visitorsTotalInput.addEventListener('change', () => {
+    staffHours();
+  });
+  durationInput.addEventListener('change', () => {
+    staffHours();
+  });
+  percstaffInput.addEventListener('change', () => {
+    staffHours();
+  });
   // turn result text off - it is shown when the Calculate button is clicked
   outputText.style.display = "none";
+  outputText2.style.display = "none";
 });
 
 

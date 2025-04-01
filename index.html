@@ -49,6 +49,8 @@
 		This tool estimates an appropriate adoption goals and the number of adoption staff members estimated to support that goal. 
 	</div>
 	<br>
+	<h3>Part 1: Number of Adoptions</h3>
+
 	<div class="row">
 		<div class="col-md-6">
 			<h3>Inputs</h3>
@@ -113,7 +115,7 @@
 	  </div>
 
 	<br>
-    <h3>Results</h3>
+    <h3>Results: Adoptions</h3>
 
 	<div class="row">
 		<div class="col-lg-3"></div>
@@ -128,17 +130,81 @@
 			</div>
 		</div>
 		<div class="col-lg-3"></div>
-	</div>	
-	<div class="free-text" id="output-Text">
-		<br><b>What does this result mean?</b><br>
-		The RTH rate calculated for your organization is a reflection of the rate, on average, of organizations with a similar profile to yours, based on data used in creating the calculator from over 1,000 organizations.
-		<br><b>If this is higher than your current RTH rate for dogs:</b> this can be a goal to aspire to!
-		<br><b>If this is lower or close to your current RTH rate for dogs:</b> this means you are doing better than similar organizations. Congrats! You may want to aspire even higher, and set a goal that is closer to the higher-performing organizations.<div id="output-Highperf"></div>
 	</div>
+	<div class="free-text" id="output-Text">
+		<br><b>How is this calculated?</b><br>
+		The number of adoptions needed to stay in 100% balance is calculated as the number of expected intakes minus all non-adoption outcomes (other live, non-live), assuming the proportion of these outcomes out of the new intakes will be the same as in 2024. For example, if you had 5% non-live outcomes, we assume 5% of the new intake will be non-live outcomes again.
+		<br>The second goal shown adds adoptions to cover for any population imbalance from 2024, which would occur if there were more intakes than outcomes. In that case, the adoption goal is calculated similarly, and then the intakes that had no outcomes from 2024 are added.
+	</div>
+	
+	<h3>Part 2: Adoption Staff</h3>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Inputs</h3>
+		</div>
+		<div class="col-md-6">
+			<h3>Parameters Used</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="mb-3>">
+				<label class="form-label" style="color: green;" for="input-Visitors">Daily Adoption Visitors</label>
+				<input name="input_Visitors" type="number" class="form-control" id="input-Visitors" placeholder="Insert daily visitors for adoption department">
+			</div>
+			<div class="mb-3>">
+				<label class="form-label" style="color: green;" for="input-VisitorsTotal">If Unknown, Total Daily Visitors</label>
+				<input name="input_VisitorsTotal" type="number" class="form-control" id="input-VisitorsTotal" placeholder="Insert daily visitors">
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="mb-3>">
+				<label class="form-label" style="color: red;" for="output-Duration">Average visit duration in minutes</label>
+				<input name="output_Duration" type="text" class="form-control" id="output-Duration" placeholder="60">
+			</div>
+			<div class="mb-3>">
+				<label class="form-label" style="color: red;" for="output-PercStaff">% of visit spent with a staff member</label>
+				<input name="output_PercStaff" type="text" class="form-control" id="output-PercStaff" placeholder="30%">
+			</div>
+			<div class="mb-3>">
+				<label class="form-label" style="color: red;" for="output-Hours">Daily Staff Hours</label>
+				<input name="output_Hours" type="text" class="form-control" id="output-Hours" placeholder="">
+			</div>
+		</div>
+	</div>	
+	
+	<br>
+	<div class="row">
+		<div class="col text-center">
+			<button type="button" style="width: 25%;    background-color: #0082ca;    background-color: #0082ca; color: white;" onclick="hoursCalc()">Calculate Adoption Staff Needed</button>
+		</div>
+	  </div>
+
+	<br>
+    <h3>Results: Adoption Staff</h3>
+
+	<div class="row">
+		<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+			<div class="mb-3>">
+				<label class="form-label" style="color: blue;" for="output-FTEs"># Adoption FTEs</label>
+				<input name="output_FTEs" type="text" class="form-control" id="output-FTEs" placeholder="">
+			</div>
+		</div>
+		<div class="col-lg-3"></div>
+	</div>	
+
+	<div class="free-text" id="output-Text2">
+		<br><b>How is this calculated?</b><br>
+		The number of staff members needed is estimated by finding the number of daily hours that adoption staff would be spending with customers. This is a function of the number of visitors, the average visit duration, and the proportion of a visit spent actively with a staff member (as opposed to browsing alone, for example).
+		<br>The only necessary input here is the number of visitors, as we provided an estimate for the others based on the data we collected from surveys and experiments in various shelters. However, these numbers can be changed to see the effect on the result. For example, a shelter with a more hands-on approach to staff assisting customers could change the staff time percentage to 50%.
+	</div>
+
 	<br>
 	<hr>
 	<br>
-    <h3>How it all works</h3>
+    
+	<h3>How it all works</h3>
 
 	<div class="free-text">
 		<details>

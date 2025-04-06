@@ -133,3 +133,48 @@ form {
 .cf:after {
     clear: both;
 }
+
+/* tooltips */
+.tooltip-icon {
+   position: relative;
+   display: inline-flex; /* use flexbox */
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   color: #003a5d; /* matches your headings */
+   font-family: 'Lato', sans-serif;
+   font-weight: normal; /* not bold */
+   font-size: 12px;
+   background-color: #e6f1f7;
+   border-radius: 50%;
+   width: 18px;
+   height: 18px;
+   margin-left: 6px;
+   border: 1px solid #a5c3dc;
+ }
+ 
+ .tooltip-icon .tooltip-text {
+   visibility: hidden;
+   width: 250px;
+   background-color: #003a5d;
+   color: #ffffff;
+   font-family: 'Lato', sans-serif;
+   font-size: 13px;
+   padding: 8px;
+   border-radius: 6px;
+   position: absolute;
+   z-index: 1;
+   bottom: 120%;
+   left: 50%;
+   transform: translateX(-50%);
+   opacity: 0;
+   transition: opacity 0.3s;
+   text-align: left;
+   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .tooltip-icon:hover .tooltip-text {
+   visibility: visible;
+   opacity: 1;
+ }
+ 

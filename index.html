@@ -113,7 +113,13 @@
 		</div>
 		<div class="col-md-6">
 			<div class="mb-3">
-				<label class="form-label" style="color: red;" for="output-Pop">2024 Population Balance</label>
+				<label class="form-label" style="color: red;" for="output-Pop">2024 Population Balance
+					<span class="tooltip-icon">?
+						<span class="tooltip-text">
+							The SAC Population Balance Calculation is used to determine if a shelter’s population is increasing, decreasing, or staying the same. <br>– 100% means that animals are leaving at the exact same rate that they’re coming in so the total number of animals is unchanged (equilibrium).<br>– Under 100% means the population is increasing (i.e. 97% means 3% of animals entering the shelter stayed in the shelter).<br>– Over 100% means the population is decreasing (i.e. 107% mean 7% more animals left than entered the shelter).
+						</span>
+					</span>
+				</label>
 				<input name="output_Pop" type="text" class="form-control" id="output-Pop" placeholder="Outcomes divided by intakes, as %">
 			</div>
 			<div class="mb-3">
@@ -209,7 +215,7 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label" style="color: red;" for="output-PercStaff">% of visit spent with a staff member</label>
-				<input name="output_PercStaff" type="text" class="form-control" id="output-PercStaff" placeholder="Default: 30%">
+				<input name="output_PercStaff" type="text" class="form-control" id="output-PercStaff" placeholder="Default: 50%">
 			</div>
 			<div class="mb-3">
 				<label class="form-label" style="color: red;" for="output-Hours">Daily Staff Hours</label>
@@ -242,7 +248,7 @@
 	<div class="free-text" id="output-Text2">
 		<br><b>How is this calculated?</b><br>
 		The number of staff members needed is estimated by finding the number of daily hours that adoption staff would be spending with customers. This is a function of the number of visitors, the average visit duration, and the proportion of a visit spent actively with a staff member (as opposed to browsing alone, for example). In Option 3, the number of visitors is calculated using the adoption goal and % of visitors that adopt (conversion rate). For example, if the weekly goal is 60 and 30% of visitors adopt, 200 weekly visitors are estimated (30% of which is 60), or roughly 28 daily visitors. 
-		<br>The only necessary input here is the number of visitors, as we provided an estimate for the others based on the data we collected from surveys and experiments in various shelters. However, these numbers can be changed to see the effect on the result. For example, a shelter with a more hands-on approach to staff assisting customers could change the staff time percentage to 50%. The number of hours is divided by 6.5 to get the FTEs estimated.
+		<br>The only necessary input here is the number of visitors, as we provided an estimate for the others based on the data we collected from surveys and experiments in various shelters. However, these numbers can be changed to see the effect on the result. For example, a shelter with a more hands-on approach to staff assisting customers could change the staff time percentage to 75%. The number of hours is divided by 6.5 and rounded up to get the FTEs estimated.
 	</div>
 
 	

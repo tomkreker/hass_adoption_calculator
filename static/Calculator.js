@@ -244,7 +244,7 @@ function staffHours() {
     duration = parseFloat(duration);
   }  
   if (percStaff == ""){
-    percStaff = "30%";
+    percStaff = "50%";
   }
   // add % if input is just a number
   if (percStaff != "" & percStaff.charAt(percStaff.length-1) != "%"){
@@ -259,7 +259,7 @@ function staffHours() {
     outputHours.value = 'Visitors must not be zero.';
   } 
   else {
-    outputHours.value = Math.round(visitors * Math.round(duration/60) * (parseFloat(percStaff.slice(0,-1))/100));
+    outputHours.value = Math.ceil(visitors * (duration/60) * (parseFloat(percStaff.slice(0,-1))/100));
   }
 }
 

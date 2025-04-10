@@ -62,7 +62,7 @@ function otherLive() {
   else if (adoptions > outcomes) {
     outputOtherlive.value = 'Adoptions cannot be more than outcomes.';
   } 
-  else if (adoptions + nonlive >= outcomes) {
+  else if (adoptions + nonlive > outcomes) {
     outputOtherlive.value = 'Other live outcomes cannot be zero.';
   } 
   else {
@@ -105,7 +105,7 @@ function resetNewIntakes() {
 function adoptCalc() {
   // master function used to perform the calculation  of part 1
   // get selected values based on user input
-  var region = document.getElementById('input-Region').value;
+  //var region = document.getElementById('input-Region').value;
   var intakes = parseFloat(document.getElementById('input-Intakes').value);
   var newintakes = parseFloat(document.getElementById('input-Newintakes').value);
   var outcomes = parseFloat(document.getElementById('input-Outcomes').value);
@@ -139,7 +139,7 @@ function adoptCalc() {
       outcomeError.textContent = 'Outcomes cannot be empty or zero';
       isValid = false;
   }
-  if (isNaN(otherlive) || (adoptions + otherlive + nonlive != outcomes)) {
+  if (isNaN(otherlive) || (adoptions + nonlive > outcomes)) {
       outcomeError.textContent = 'Adoptions + Non-live outcomes cannot be more than total outcomes.';
       isValid = false;
   }
@@ -175,8 +175,6 @@ function adoptCalc() {
     if (pop >= 100){
       calculatedValuePop = calculatedValue100;
     }
-    //console.log('svi, region, orgtype, perc_stray, intake_size', '\nvalues: ',svi, region, orgtype, perc_stray, intake_size, '\ncoefs: ', sviCoef, regionCoef, orgCoef, percstrayCoef, intakeCoef);
-    //console.log('calc value', calculatedValue)
 
     // update output with the rate
     document.getElementById('output-Prediction').value = calculatedValue100 + ' adoptions';	
@@ -301,8 +299,7 @@ function hoursCalc() {
   var hours = parseFloat(outputHours.value);
 
   // value to hit 100% balance with new intake, assuming same % of other live and non-live outcomes
-  var calculatedValue = Math.round(hours/6.5);
-  // value to make up for previous imbalance - adding the previous non-outcomes
+  var calculatedValue = Math.max(2,Math.ceil(hours/6.5));
 
   // update output with the rate
   document.getElementById('output-FTEs').value = calculatedValue + ' staff members';	
